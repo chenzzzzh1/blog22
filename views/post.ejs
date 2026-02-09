@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title %> - 我的博客</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="blog-title">我的博客</h1>
+                <p class="blog-subtitle">分享生活与技术</p>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">首页</a>
+                <a href="/admin" class="nav-link">管理</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <article class="post-detail">
+                <header class="post-detail-header">
+                    <h1 class="post-detail-title"><%= post.title %></h1>
+                    <div class="post-detail-meta">
+                        <span class="post-date"><%= new Date(post.date).toLocaleDateString('zh-CN') %></span>
+                        <span class="post-views"><%= post.views %> 次阅读</span>
+                    </div>
+                    <% if(post.tags && post.tags.length > 0) { %>
+                    <div class="post-tags">
+                        <% post.tags.forEach(tag => { %>
+                        <span class="tag"><%= tag %></span>
+                        <% }) %>
+                    </div>
+                    <% } %>
+                </header>
+
+                <div class="post-detail-content">
+                    <%- content %>
+                </div>
+
+                <div class="post-detail-footer">
+                    <a href="/" class="btn btn-secondary">返回首页</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的博客. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

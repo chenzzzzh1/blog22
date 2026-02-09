@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的博客 - 分享生活与技术</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="blog-title">我的博客</h1>
+                <p class="blog-subtitle">分享生活与技术</p>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link active">首页</a>
+                <a href="/admin" class="nav-link">管理</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="posts-grid">
+                <% posts.forEach(post => { %>
+                <article class="post-card">
+                    <div class="post-card-content">
+                        <h2 class="post-title">
+                            <a href="/post/<%= post.id %>"><%= post.title %></a>
+                        </h2>
+                        <div class="post-meta">
+                            <span class="post-date"><%= new Date(post.date).toLocaleDateString('zh-CN') %></span>
+                            <span class="post-views"><%= post.views %> 次阅读</span>
+                        </div>
+                        <% if(post.tags && post.tags.length > 0) { %>
+                        <div class="post-tags">
+                            <% post.tags.forEach(tag => { %>
+                            <span class="tag"><%= tag %></span>
+                            <% }) %>
+                        </div>
+                        <% } %>
+                        <p class="post-excerpt"><%= post.excerpt %></p>
+                        <a href="/post/<%= post.id %>" class="read-more">阅读更多 →</a>
+                    </div>
+                </article>
+                <% }) %>
+            </div>
+
+            <% if (posts.length === 0) { %>
+            <div class="empty-state">
+                <p>还没有发布任何文章</p>
+                <a href="/admin" class="btn btn-primary">发布第一篇文章</a>
+            </div>
+            <% } %>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的博客. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
