@@ -8,11 +8,24 @@
   ],
   "routes": [
     {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/test.html",
+      "dest": "/test.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server.js"
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "VERCEL": "true"
   }
 }

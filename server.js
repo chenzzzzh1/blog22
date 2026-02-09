@@ -15,6 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static(__dirname)); // 允许访问根目录下的静态文件
 
 // 数据存储文件 - 使用临时目录以支持云平台
 const isCloud = process.env.NODE_ENV === 'production' || process.env.VERCEL || process.env.RENDER;
@@ -145,11 +146,17 @@ app.use((req, res) => {
 
 // 启动服务器
 initPosts();
-app.listen(PORT, () => {
-    console.log('='.repeat(50));
-    console.log('博客服务器已启动！');
-    console.log('='.repeat(50));
-    console.log(`访问地址: http://localhost:${PORT}`);
-    console.log(`管理页面: http://localhost:${PORT}/admin`);
-    console.log('='.repeat(50));
-});
+
+// 导出app供Vercel使用
+if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    module.exports = app;
+} else {
+    app.listen(PORT, () => {
+        console.log('='.repeat(50));
+        console.log('博客服务器已启动！');
+        console.log('='.repeat(50));
+        console.log(`访问地址: http://localhost:${PORT}`);
+        console.log(`管理页面: http://localhost:${PORT}/admin`);
+        console.log('='.repeat(50));
+    });
+}

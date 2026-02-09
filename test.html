@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .test-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-card">
+        <h1>🎨 CSS 动画测试</h1>
+
+        <div class="status success">✅ CSS 文件正常加载</div>
+        <div class="status info">ℹ️ 如果看到这个页面有渐变背景和卡片动画，说明 CSS 正常工作</div>
+
+        <div style="margin-top: 30px;">
+            <a href="/" class="btn">返回博客首页</a>
+            <a href="/admin" class="btn">前往管理页面</a>
+        </div>
+
+        <div style="margin-top: 30px; text-align: left;">
+            <h3>诊断信息：</h3>
+            <ul style="list-style: none; margin-top: 10px;">
+                <li>✓ 渐变背景：紫色到粉色</li>
+                <li>✓ 卡片阴影效果</li>
+                <li>✓ 淡入动画效果</li>
+                <li>✓ 按钮悬停效果</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3>如何解决博客没有样式的问题：</h3>
+            <ol style="text-align: left; margin-top: 10px; margin-left: 20px;">
+                <li>确保已安装依赖：<code>npm install</code></li>
+                <li>重启服务器：<code>npm start</code></li>
+                <li>清除浏览器缓存并刷新页面</li>
+                <li>检查浏览器控制台是否有错误（按 F12）</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // 添加鼠标移动效果
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.test-card');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+    </script>
+</body>
+</html>
